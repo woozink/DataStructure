@@ -1,4 +1,4 @@
-package chap01;
+package exChapter01;
 
 import java.util.Scanner;
 
