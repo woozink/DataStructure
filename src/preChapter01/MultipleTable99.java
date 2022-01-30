@@ -1,4 +1,4 @@
-package preChapter1;
+package preChapter01;
 
 public class MultipleTable99 {
     public static void main(String[] args) {

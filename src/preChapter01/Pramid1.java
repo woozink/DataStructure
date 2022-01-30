@@ -1,4 +1,4 @@
-package preChapter1;
+package preChapter01;
 
 import java.util.Scanner;
 

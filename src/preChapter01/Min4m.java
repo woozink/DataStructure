@@ -1,4 +1,4 @@
-package preChapter1;
+package preChapter01;
 
 public class Min4m {
     static int min4(int a, int b, int c, int d){

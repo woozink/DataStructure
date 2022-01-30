@@ -1,4 +1,4 @@
-package preChapter1;
+package preChapter01;
 
 public class Max4m {
     static int max4(int a, int b, int c, int d){
