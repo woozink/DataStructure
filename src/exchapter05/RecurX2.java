@@ -6,7 +6,6 @@ public class RecurX2 {
     static void recur(int n) {
         InStack s = new InStack(n);
 
-
         while (true) {
             if (n > 0) {
                 s.push(n);
