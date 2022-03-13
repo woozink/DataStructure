@@ -53,21 +53,87 @@ public class NodeMgmt {
         }
 
         //CASE2 :노드가 하나 이상일 때
-        else{
+        else {
             Node findNode = this.head;
-            while(findNode != null){
-                if(findNode.value == data){
+            while (findNode != null) {
+                if (findNode.value == data) {
                     return findNode;
-                }
-                else if(data < findNode.value){
+                } else if (data < findNode.value) {
                     findNode = findNode.left;
-                }
-                else{
+                } else {
                     findNode = findNode.right;
                 }
             }
             return null;
         }
+    }
+
+    public boolean delete(int value) {//삭제할 노드
+        boolean searched = false;
+
+        Node currParentNode = this.head;
+        Node currNode = this.head;
+
+        //코너 케이스 1 : Node가 하나도 없을 때
+        if (this.head == null) {
+            return false;
+        } else {
+            //코너케이스 2 : Node 가 단지 하나만 있고 해당 Node가 삭제할 노드일 때
+            if (this.head.value == value && this.head.right == null && this.head.left == null) {
+                this.head = null;
+                return true;
+            }
+
+            while (currNode != null) {
+                if (currNode.value == value) {
+                    searched = true;
+                    break;
+                } else if (value < currNode.value) {
+                    currParentNode = currNode;
+                    currNode = currNode.left;
+                } else {
+                    currParentNode = currNode;
+                    currNode = currNode.right;
+                }
+            }
+
+            if (searched == false) {
+                return false;
+            }
+        }
+        //case 1 삭제할 노드가 Left 노드일 경우
+        if (currNode.left == null && currNode.right == null) {
+            if (currParentNode.value > value) {
+                currParentNode = null;
+                currNode = null;
+            } else {
+                currParentNode.right = null;
+                currNode = null;
+            }
+            return true;
+
+        } else if (currNode.left != null && currNode.right == null) {
+            //case2-1 삭제할 노드가 Child 노드를 1개 가지고 있을 경우 (왼쪽)
+            if (value < currParentNode.value) {
+                currParentNode.left = currNode.left;
+                currNode = null;
+            } else {
+                currParentNode.right = currNode.left;
+                currNode = null;
+            }
+            return true;
+        } else if (currNode.left == null && currNode.right != null) {
+            //case2-2 삭제할 노드가 Child 노드를 1개 가지고 있을 경우 (오른쪽)
+            if (value < currParentNode.value) {
+                currParentNode.left = currNode.right;
+                currNode = null;
+            } else {
+                currParentNode.right = currNode.left;
+                currNode = null;
+            }
+            return true;
+        }
+        return true;
     }
 
     public static void main(String[] args) {
