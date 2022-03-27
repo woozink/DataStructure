@@ -1,13 +1,11 @@
 package quicksort;
-
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
 class Split{
-    public void splitFunc(ArrayList<Integer> dataList){
+    public ArrayList<Integer> sort(ArrayList<Integer> dataList){
         if(dataList.size() <= 1){
-            return;
+            return dataList;
         }
         int pivot = dataList.get(0);
 
@@ -24,17 +22,20 @@ class Split{
         }
 
         ArrayList<Integer> mergedArr = new ArrayList<Integer>();
-        mergedArr.addAll(leftArr);
+        mergedArr.addAll(this.sort(leftArr));
         mergedArr.addAll(Arrays.asList(pivot));
-        mergedArr.addAll(rightArr);
+        mergedArr.addAll(this.sort(rightArr));
 
-        System.out.println(mergedArr);
+        return mergedArr;
     }
 }
 public class QuickSort {
-
-
     public static void main(String[] args) {
+        ArrayList<Integer> testData = new ArrayList<Integer>();
 
+        for(int index = 0; index <100; index++){
+            testData.add((int)(Math.random()*100));
+        }
+        Split split = new Split();
     }
 }
